@@ -1,4 +1,4 @@
-use strict;
+"use strict";
 $(document).ready(function() {
 
 	//what does this do?
@@ -59,7 +59,7 @@ $(document).ready(function() {
 	}
 	deal(deck, cards_player_1, cards_player_2);
 	// var deal = function(deck, cards_player_1, cards_player_2) {   
- 	// 	  	while(deck.length > 0){
+ 	// 	  	while(deck.length){
  	// 	          var card = deck.shift();
 	// 	          if(deck.length % 2 !== 0) {
 	// 	              cards_player_1.push(card);
@@ -110,7 +110,7 @@ $(document).ready(function() {
 		//give the winner both cards (at end of deck)
 	var tieStack = [];	
 	var play = function(){
-		newVar = war(cards_player_1[0], cards_player_2[0]);
+		var newVar = war(cards_player_1[0], cards_player_2[0]);
 
 		if (newVar === "player1") {
 			cards_player_1.push(cards_player_2.shift());
@@ -124,12 +124,13 @@ $(document).ready(function() {
 			tieStack = [];
 		} else if (newVar === false) {
 			tieStack.concat(cards_player_1.splice(0, 3).concat(cards_player_2.splice(0, 3)));
+			play();
 		}
 		//this function (defined below) will continue to the next turn
 		advance();
 	}
 	
-
+	
 	advance();
 	
 	$(".btn").click(function() {
